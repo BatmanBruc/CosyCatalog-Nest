@@ -18,4 +18,15 @@ export class ItemsService {
   async findAll(): Promise<Item[]> {
     return this.itemModel.find().exec();
   }
+
+  async change(id: string, CreateItemDto: CreateItemDto): Promise<Item> {
+    const createdItem = await this.itemModel.findById(id);
+    await createdItem.update(CreateItemDto);
+    return createdItem.save();
+  }
+
+  async delete(id: string): Promise<Item> {
+    const createdItem = await this.itemModel.findById(id);
+    return await createdItem.delete();
+  }
 }
