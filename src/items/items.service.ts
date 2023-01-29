@@ -11,8 +11,8 @@ export class ItemsService {
   ) {}
 
   async create(CreateItemDto: CreateItemDto): Promise<Item> {
-    const createdCat = new this.itemModel(CreateItemDto);
-    return createdCat.save();
+    const createdItem = new this.itemModel(CreateItemDto);
+    return createdItem.save();
   }
 
   async findAll(): Promise<Item[]> {
