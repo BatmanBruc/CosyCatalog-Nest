@@ -1,13 +1,13 @@
 import { SubDocument } from 'src/types';
 
-export interface Catgory extends SubDocument {
+export interface Category extends SubDocument {
   name: string;
   description: string | undefined;
 }
 
 export interface Item {
   date: typeof Date;
-  category: Catgory;
+  category: Category | undefined;
   name: string;
   price: string;
   description: string | undefined;

@@ -11,21 +11,26 @@ type TType<T> = NonNullable<T> extends string
   ? typeof Number
   : T extends any[]
   ? typeof Array
+  : T extends SubDocument
+  ? typeof mongoose.Types.ObjectId
   : T;
 
 type IsRequred<T> = Extract<T, undefined> extends never
   ? true
   : false | undefined;
 
+interface Field<T> {
+  type: TType<T>;
+  required: IsRequred<T>;
+  [key: string]: any;
+}
+
+interface SubField<T> extends Field<T> {
+  ref: string;
+}
+
 export type ParamsSchema<T> = {
-  [K in keyof T]: T[K] extends SubDocument
-    ? {
-        type: typeof mongoose.Types.ObjectId;
-        ref: string;
-      }
-    : {
-        type: TType<T[K]>;
-        required: IsRequred<T[K]>;
-        [key: string]: any;
-      };
+  [K in keyof T]: Extract<T[K], SubDocument> extends never
+    ? Field<T[K]>
+    : SubField<T[K]>;
 };

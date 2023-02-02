@@ -21,6 +21,7 @@ const paramsSchema: ParamsSchema<Item> = {
   },
   category: {
     type: mongoose.Types.ObjectId,
+    required: false,
     ref: 'Category',
   },
 };
