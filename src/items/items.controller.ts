@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { ItemsService } from './items.service';
 import { Item } from './item.interface';
-import { JoiValidationPipe } from 'src/pipes/joi-validation.pipe';
+import { JoiValidationPipe } from '../pipes/joi-validation.pipe';
 import { createItemValidateSchema } from './item.validate.schema';
 
 @Controller('items')

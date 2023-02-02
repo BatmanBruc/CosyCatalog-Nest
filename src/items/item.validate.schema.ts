@@ -1,7 +1,7 @@
+import { CreateItemDto } from './dto/create-item.dto';
 import * as Joi from 'joi';
-import { Item } from './item.interface';
 
-export const createItemValidateSchema = Joi.object<Item>({
+export const createItemValidateSchema = Joi.object<CreateItemDto>({
   name: Joi.string().required(),
   price: Joi.string().required(),
   description: Joi.string().required(),
