@@ -7,29 +7,29 @@ import { CreateCategoryDto } from './dto/create-item.dto';
 export class CategoriesService {
   constructor(
     @Inject('CATEGORY_MODEL')
-    private categoryModel: Model<Category>,
+    private model: Model<Category>,
   ) {}
 
   async create(CreateCategoryDto: CreateCategoryDto): Promise<Category> {
-    const createdCategory = new this.categoryModel(CreateCategoryDto);
+    const createdCategory = new this.model(CreateCategoryDto);
     return createdCategory.save();
   }
 
   async findAll(): Promise<Category[]> {
-    return this.categoryModel.find().exec();
+    return this.model.find().exec();
   }
 
   async change(
     id: string,
     CreateCategoryDto: CreateCategoryDto,
   ): Promise<Category> {
-    const createdCategory = await this.categoryModel.findById(id);
+    const createdCategory = await this.model.findById(id);
     await createdCategory.update(CreateCategoryDto);
     return createdCategory.save();
   }
 
   async delete(id: string): Promise<Category> {
-    const createdCategory = await this.categoryModel.findById(id);
+    const createdCategory = await this.model.findById(id);
     return await createdCategory.delete();
   }
 }

@@ -7,26 +7,26 @@ import { CreateItemDto } from './dto/create-item.dto';
 export class ItemsService {
   constructor(
     @Inject('ITEM_MODEL')
-    private itemModel: Model<Item>,
+    private model: Model<Item>,
   ) {}
 
   async create(CreateItemDto: CreateItemDto): Promise<Item> {
-    const createdItem = new this.itemModel(CreateItemDto);
+    const createdItem = new this.model(CreateItemDto);
     return createdItem.save();
   }
 
   async findAll(): Promise<Item[]> {
-    return this.itemModel.find().exec();
+    return this.model.find().populate('category').exec();
   }
 
   async change(id: string, CreateItemDto: CreateItemDto): Promise<Item> {
-    const createdItem = await this.itemModel.findById(id);
+    const createdItem = await this.model.findById(id);
     await createdItem.update(CreateItemDto);
     return createdItem.save();
   }
 
   async delete(id: string): Promise<Item> {
-    const createdItem = await this.itemModel.findById(id);
+    const createdItem = await this.model.findById(id);
     return await createdItem.delete();
   }
 }

@@ -15,17 +15,17 @@ import { createItemValidateSchema } from './item.validate.schema';
 
 @Controller('items')
 export class ItemsController {
-  constructor(private itemsService: ItemsService) {}
+  constructor(private service: ItemsService) {}
 
   @Get()
   get_all(): Promise<Item[]> {
-    return this.itemsService.findAll();
+    return this.service.findAll();
   }
 
   @Post()
   @UsePipes(new JoiValidationPipe(createItemValidateSchema))
   create(@Body() createItemDto: CreateItemDto): Promise<any> {
-    return this.itemsService.create(createItemDto);
+    return this.service.create(createItemDto);
   }
 
   @Post(':id')
@@ -34,11 +34,11 @@ export class ItemsController {
     @Body(new JoiValidationPipe(createItemValidateSchema))
     createItemDto: CreateItemDto,
   ): Promise<any> {
-    return this.itemsService.change(id, createItemDto);
+    return this.service.change(id, createItemDto);
   }
 
   @Delete(':id')
   delete(@Param('id') id: string): Promise<any> {
-    return this.itemsService.delete(id);
+    return this.service.delete(id);
   }
 }

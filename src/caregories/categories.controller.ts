@@ -13,7 +13,7 @@ import { Category } from './category.interface';
 import { JoiValidationPipe } from '../pipes/joi-validation.pipe';
 import { createCategoryValidateSchema } from './category.validate.schema';
 
-@Controller('items')
+@Controller('categories')
 export class ItemsController {
   constructor(private service: CategoriesService) {}
 

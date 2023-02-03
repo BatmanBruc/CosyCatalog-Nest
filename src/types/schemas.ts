@@ -1,6 +1,5 @@
 import * as mongoose from 'mongoose';
 import { ObjectId } from 'mongoose';
-import { Item } from 'src/items/item.interface';
 
 export interface SubDocument {
   _id?: ObjectId;
