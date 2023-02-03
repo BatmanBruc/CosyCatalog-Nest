@@ -1,14 +1,9 @@
-import { SubDocument } from 'src/types/schemas';
-
-export interface Category extends SubDocument {
-  name: string;
-  description: string | undefined;
-}
+import { Category } from 'src/caregories/category.interface';
 
 export interface Item {
-  category: Category | undefined;
+  category: Category | void;
   name: string;
   price: string;
-  description: string | undefined;
+  description: string | void;
   sale: boolean;
 }
