@@ -1,11 +1,12 @@
 import * as mongoose from 'mongoose';
 import { ObjectId } from 'mongoose';
+import { Item } from 'src/items/item.interface';
 
 export interface SubDocument {
-  _id: ObjectId;
+  _id?: ObjectId;
 }
 
-type TType<T> = NonNullable<T> extends string
+type TType<T> = Exclude<T | void, void> extends string
   ? typeof String
   : T extends number
   ? typeof Number
@@ -17,9 +18,7 @@ type TType<T> = NonNullable<T> extends string
   ? typeof mongoose.Types.ObjectId
   : T;
 
-type IsRequred<T> = Extract<T, undefined> extends never
-  ? true
-  : false | undefined;
+type IsRequred<T> = Extract<T, void> extends never ? true : false | undefined;
 
 interface Field<T> {
   type: TType<T>;
