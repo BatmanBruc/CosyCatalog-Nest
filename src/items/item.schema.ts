@@ -1,8 +1,8 @@
-import { ParamsSchema } from 'src/types';
+import { FieldsSchema } from 'src/types/schemas';
 import { Item } from './item.interface';
 import * as mongoose from 'mongoose';
 
-const paramsSchema: ParamsSchema<Item> = {
+const fieldsSchema: FieldsSchema<Item> = {
   name: {
     type: String,
     required: true,
@@ -15,15 +15,17 @@ const paramsSchema: ParamsSchema<Item> = {
     type: String,
     required: false,
   },
-  date: {
-    type: Date,
-    required: true,
-  },
   category: {
     type: mongoose.Types.ObjectId,
     required: false,
     ref: 'Category',
   },
+  sale: {
+    type: Boolean,
+    required: true,
+  },
 };
 
-export const ItemSchema = new mongoose.Schema<Item>(paramsSchema);
+export const ItemSchema = new mongoose.Schema<Item>(fieldsSchema, {
+  timestamps: true,
+});

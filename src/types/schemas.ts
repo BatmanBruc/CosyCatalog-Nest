@@ -11,6 +11,8 @@ type TType<T> = NonNullable<T> extends string
   ? typeof Number
   : T extends any[]
   ? typeof Array
+  : T extends boolean
+  ? typeof Boolean
   : T extends SubDocument
   ? typeof mongoose.Types.ObjectId
   : T;
@@ -29,7 +31,7 @@ interface SubField<T> extends Field<T> {
   ref: string;
 }
 
-export type ParamsSchema<T> = {
+export type FieldsSchema<T> = {
   [K in keyof T]: Extract<T[K], SubDocument> extends never
     ? Field<T[K]>
     : SubField<T[K]>;

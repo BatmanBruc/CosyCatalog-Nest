@@ -1,4 +1,4 @@
-import { SubDocument } from 'src/types';
+import { SubDocument } from 'src/types/schemas';
 
 export interface Category extends SubDocument {
   name: string;
@@ -6,9 +6,9 @@ export interface Category extends SubDocument {
 }
 
 export interface Item {
-  date: typeof Date;
   category: Category | undefined;
   name: string;
   price: string;
   description: string | undefined;
+  sale: boolean;
 }
