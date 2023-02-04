@@ -1,6 +1,6 @@
-import { SubDocument } from 'src/types/schemas';
+import { RefDocument } from 'src/types/schemas';
 
-export interface Category extends SubDocument {
+export interface Category extends RefDocument {
   description: string | void;
   name: string;
 }

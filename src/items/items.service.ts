@@ -16,7 +16,7 @@ export class ItemsService {
   }
 
   async findAll(): Promise<Item[]> {
-    return this.model.find().populate('category').exec();
+    return this.model.find().exec();
   }
 
   async change(id: string, CreateItemDto: CreateItemDto): Promise<Item> {
